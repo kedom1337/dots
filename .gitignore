@@ -1,0 +1,16 @@
+/*
+
+!.gitignore
+
+!.config
+.config/*
+
+!.config/nvim
+!.config/firefox
+!.config/fish
+.config/fish/fish_variables
+
+!Pictures
+Pictures/*
+
+!Pictures/Wallpapers
