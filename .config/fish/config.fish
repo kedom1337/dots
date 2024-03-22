@@ -5,7 +5,7 @@ if status is-interactive
 
     # Pacman and AUR package managment
     alias pacin="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
-    alias pacrm="pacman -Qq | fzf --multi --preview 'pacman -Qi {0}' | xargs -ro sudo pacman -Rns"
+    alias pacrm="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
     alias yayin="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
     alias yayrm="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro yay -Rns"
 
