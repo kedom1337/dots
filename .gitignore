@@ -5,6 +5,8 @@
 !.config
 .config/*
 
+!.config/shortcuts.kksrc
+
 !.config/nvim
 !.config/firefox
 !.config/fish
