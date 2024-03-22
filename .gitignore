@@ -6,6 +6,7 @@
 .config/*
 
 !.config/nvim
+.config/nvim/lazy-lock.json
 !.config/firefox
 !.config/fish
 .config/fish/fish_variables
