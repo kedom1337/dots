@@ -1,4 +1,6 @@
 if status is-interactive
+    set -g fish_greeting
+
     # Vi keybindings
     fish_vi_key_bindings
     source ~/.config/fish/functions/fish_mode_promt.fish
