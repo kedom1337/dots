@@ -1,6 +1,8 @@
 if status is-interactive
     set -g fish_greeting
 
+    fish_config theme choose "Catppuccin Mocha"
+
     # Vi keybindings
     fish_vi_key_bindings
     source ~/.config/fish/functions/fish_mode_promt.fish
