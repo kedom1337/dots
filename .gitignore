@@ -12,6 +12,8 @@
 !.config/fish
 .config/fish/fish_variables
 !.config/yazi
+!.config/lazygit
+.config/lazygit/state.yml
 
 !Pictures
 Pictures/*
