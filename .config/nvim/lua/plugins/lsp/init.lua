@@ -55,6 +55,13 @@ return {
 
         require("lspconfig")[server_name].setup(opts)
       end,
+      ["rust_analyzer"] = function() end,
     })
+
+    vim.g.rustaceanvim = {
+      server = {
+        on_attach = on_attach,
+      },
+    }
   end,
 }
