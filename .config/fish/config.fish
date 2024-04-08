@@ -1,5 +1,6 @@
 if status is-interactive
     set -g fish_greeting
+    set -gx GPG_TTY (tty)
 
     fish_config theme choose "Catppuccin Mocha"
 
