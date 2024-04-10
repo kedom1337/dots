@@ -1,4 +1,6 @@
 return {
   "mrcjkb/rustaceanvim",
-  ft = { "rust" },
+  ft = {
+    "rust",
+  },
 }

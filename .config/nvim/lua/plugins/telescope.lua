@@ -4,10 +4,6 @@ local function project_files()
     opts.show_untracked = true
     require("telescope.builtin").git_files(opts)
   else
-    local client = vim.lsp.get_active_clients()[1]
-    if client then
-      opts.cwd = client.config.root_dir
-    end
     require("telescope.builtin").find_files(opts)
   end
 end
@@ -21,17 +17,15 @@ return {
   },
   keys = {
     { "<leader>f", project_files, "Find files" },
-    { "<leader>g", "<cmd> Telescope live_grep <cr>", "Live grep" },
-    { "<leader>k", "<cmd> Telescope keymaps <cr>", "Show keys" },
-    { "<leader>p", "<cmd> Telescope projects <cr>", "Find projects" },
+    { "<leader>g", "<cmd>Telescope live_grep<cr>", "Live grep" },
+    { "<leader>k", "<cmd>Telescope keymaps<cr>", "Show keys" },
+    { "<leader>p", "<cmd>Telescope projects<cr>", "Find projects" },
   },
   config = function()
     local telescope = require("telescope")
 
     telescope.setup({
       defaults = {
-        prompt_prefix = "   ",
-        selection_caret = "  ",
         layout_config = {
           prompt_position = "top",
         },

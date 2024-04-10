@@ -1,26 +1,3 @@
-local kind_icons = {
-  Class = " ",
-  Color = " ",
-  Constant = " ",
-  Constructor = " ",
-  Enum = "了 ",
-  EnumMember = " ",
-  Field = " ",
-  File = " ",
-  Folder = " ",
-  Function = " ",
-  Interface = "ﰮ ",
-  Keyword = " ",
-  Method = "ƒ ",
-  Property = " ",
-  Snippet = "﬌ ",
-  Struct = " ",
-  Text = " ",
-  Unit = " ",
-  Value = " ",
-  Variable = " ",
-}
-
 return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
@@ -30,14 +7,17 @@ return {
     "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
+    "onsails/lspkind.nvim",
   },
   config = function()
-    vim.o.completeopt = "menu,menuone,noselect"
-
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local lspkind = require("lspkind")
 
     cmp.setup({
+      completion = {
+        completeopt = "menu,menuone,preview,noselect",
+      },
       window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
@@ -52,30 +32,6 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
@@ -85,12 +41,12 @@ return {
         { name = "path" },
       }),
       formatting = {
-        format = function(_, vim_item)
-          if kind_icons[vim_item.kind] then
-            vim_item.kind = kind_icons[vim_item.kind] .. vim_item.kind
-          end
-          return vim_item
-        end,
+        format = lspkind.cmp_format({
+          before = function(_, vim_item)
+            vim_item.menu = ""
+            return vim_item
+          end,
+        }),
       },
       experimental = {
         ghost_text = true,

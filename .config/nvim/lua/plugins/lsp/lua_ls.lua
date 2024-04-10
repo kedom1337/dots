@@ -1,16 +1,14 @@
 return {
   settings = {
     Lua = {
-      diagnostics = {
-        globals = { "vim" },
+      runtime = {
+        version = "LuaJIT",
       },
       workspace = {
+        checkThirdParty = false,
         library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+          vim.env.VIMRUNTIME,
         },
-        maxPreload = 100000,
-        preloadFileSize = 10000,
       },
     },
   },
