@@ -1,8 +1,44 @@
 local o = vim.opt
+local g = vim.g
 
-vim.g.mapleader = " "
+g.mapleader = " "
+g.maplocalleader = " "
 
-vim.g.skip_ts_context_commentstring_module = true
+g.skip_ts_context_commentstring_module = true
+
+local default_providers = {
+  "node",
+  "perl",
+  "python3",
+  "ruby",
+}
+
+for _, provider in ipairs(default_providers) do
+  g["loaded_" .. provider .. "_provider"] = 0
+end
+
+o.number = true
+o.numberwidth = 2
+
+o.cursorline = true
+o.colorcolumn = "85"
+o.signcolumn = "yes"
+
+o.laststatus = 3
+o.showmode = false
+
+o.wrap = false
+o.scrolloff = 10
+o.pumheight = 10
+
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+o.mouse = "a"
+o.clipboard = "unnamedplus"
+o.shortmess:append("sI")
+o.timeoutlen = 300
+o.inccommand = "split"
 
 o.expandtab = true
 o.smartindent = true
@@ -13,36 +49,8 @@ o.softtabstop = 2
 o.ignorecase = true
 o.smartcase = true
 
-o.laststatus = 3
-o.showmode = false
-
-o.number = true
-o.numberwidth = 2
-
 o.splitbelow = true
 o.splitright = true
 
 o.spelllang = "en,de"
-
-o.mouse = "a"
-o.cursorline = true
-o.wrap = false
-o.colorcolumn = "85"
-o.signcolumn = "yes"
-o.termguicolors = true
-o.undofile = true
-o.scrolloff = 8
-o.pumheight = 10
-o.shortmess:append "sI"
-o.clipboard = "unnamedplus"
-
-local default_providers = {
-  "node",
-  "perl",
-  "python3",
-  "ruby",
-}
-
-for _, provider in ipairs(default_providers) do
-  vim.g["loaded_" .. provider .. "_provider"] = 0
-end
+o.swapfile = false
