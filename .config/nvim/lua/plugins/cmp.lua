@@ -11,8 +11,6 @@ return {
   },
   config = function()
     local cmp = require("cmp")
-    local luasnip = require("luasnip")
-    local lspkind = require("lspkind")
 
     cmp.setup({
       completion = {
@@ -24,7 +22,7 @@ return {
       },
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          require("luasnip").lsp_expand(args.body)
         end,
       },
       mapping = cmp.mapping.preset.insert({
@@ -41,7 +39,7 @@ return {
         { name = "path" },
       }),
       formatting = {
-        format = lspkind.cmp_format({
+        format = require("lspkind").cmp_format({
           before = function(_, vim_item)
             vim_item.menu = ""
             return vim_item

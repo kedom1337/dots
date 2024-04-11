@@ -8,20 +8,16 @@ return {
   event = "BufReadPre",
   keys = {
     { "K", vim.lsp.buf.hover, desc = "Lsp hover" },
-
     { "gr", vim.lsp.buf.references, desc = "Lsp references" },
     { "gi", vim.lsp.buf.implementation, desc = "Lsp implementation" },
     { "gd", vim.lsp.buf.definition, desc = "Lsp definition" },
     { "gD", vim.lsp.buf.declaration, desc = "Lsp declaration" },
-
     { "<leader>s", vim.lsp.buf.signature_help, desc = "Lsp signature help" },
     { "<leader>ra", vim.lsp.buf.rename, desc = "Lsp rename" },
     { "<leader>ca", vim.lsp.buf.code_action, desc = "Lsp code action" },
-
     { "<leader>d", vim.diagnostic.open_float, desc = "Opens current diagnostic" },
-    { "<C-Up>", vim.diagnostic.goto_prev, desc = "Jump to previous diagnostic" },
-    { "<C-Down>", vim.diagnostic.goto_next, desc = "Jump to next diagnostic" },
-
+    { "<c-up>", vim.diagnostic.goto_prev, desc = "Jump to previous diagnostic" },
+    { "<c-down>", vim.diagnostic.goto_next, desc = "Jump to next diagnostic" },
     { "<leader>M", "<cmd>Mason<cr>", desc = "Open package manager" },
   },
   config = function()

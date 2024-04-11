@@ -4,8 +4,6 @@ local g = vim.g
 g.mapleader = " "
 g.maplocalleader = " "
 
-g.skip_ts_context_commentstring_module = true
-
 local default_providers = {
   "node",
   "perl",
@@ -30,13 +28,17 @@ o.showmode = false
 o.wrap = false
 o.scrolloff = 10
 o.pumheight = 10
+o.cmdheight = 0
 
-vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+o.list = true
+o.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 o.mouse = "a"
 o.clipboard = "unnamedplus"
-o.shortmess:append("sI")
+
+o.shortmess:append("WcIs")
+o.matchpairs:append("<:>")
+o.splitkeep = "screen"
 o.timeoutlen = 300
 o.inccommand = "split"
 
@@ -48,6 +50,8 @@ o.softtabstop = 2
 
 o.ignorecase = true
 o.smartcase = true
+o.incsearch = true
+o.infercase = true
 
 o.splitbelow = true
 o.splitright = true
