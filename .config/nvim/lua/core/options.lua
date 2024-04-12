@@ -29,6 +29,7 @@ o.wrap = false
 o.scrolloff = 10
 o.pumheight = 10
 o.cmdheight = 0
+o.smoothscroll = true
 
 o.list = true
 o.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
@@ -39,7 +40,6 @@ o.clipboard = "unnamedplus"
 o.shortmess:append("WcIs")
 o.matchpairs:append("<:>")
 o.splitkeep = "screen"
-o.timeoutlen = 300
 o.inccommand = "split"
 
 o.expandtab = true
