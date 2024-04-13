@@ -10,6 +10,9 @@ return {
           vim.env.VIMRUNTIME,
         },
       },
+      diagnostics = {
+        globals = { "MiniFiles" },
+      },
     },
   },
 }

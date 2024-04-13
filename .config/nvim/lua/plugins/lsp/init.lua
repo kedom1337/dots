@@ -15,28 +15,34 @@ return {
     { "<leader>s", vim.lsp.buf.signature_help, desc = "Lsp signature help" },
     { "<leader>ra", vim.lsp.buf.rename, desc = "Lsp rename" },
     { "<leader>ca", vim.lsp.buf.code_action, desc = "Lsp code action" },
-    { "<leader>D", vim.diagnostic.open_float, desc = "Opens current diagnostic" },
+    { "<leader>i", vim.diagnostic.open_float, desc = "Opens current diagnostic" },
     { "<c-up>", vim.diagnostic.goto_prev, desc = "Jump to previous diagnostic" },
     { "<c-down>", vim.diagnostic.goto_next, desc = "Jump to next diagnostic" },
     { "<leader>M", "<cmd>Mason<cr>", desc = "Open package manager" },
   },
   config = function()
     local lsp = require("mason-lspconfig")
+    local border = "rounded"
+
+    require("lspconfig.ui.windows").default_options = {
+      border = border,
+    }
 
     vim.diagnostic.config({
       severity_sort = true,
       float = {
-        border = "rounded",
+        border = border,
         focusable = false,
       },
     })
 
-    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-    vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
-      opts = opts or {}
-      opts.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-      return orig_util_open_floating_preview(contents, syntax, opts, ...)
-    end
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+      border = border,
+    })
+
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+      border = border,
+    })
 
     lsp.setup({
       automatic_installation = true,
