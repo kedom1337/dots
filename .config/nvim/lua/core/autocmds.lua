@@ -8,15 +8,7 @@ cmd("FileType", {
   callback = function()
     vim.wo.spell = false
   end,
-})
-
-cmd("BufEnter", {
-  group = augroup,
-  callback = function()
-    if vim.bo.filetype == "terminal" then
-      vim.wo.spell = false
-    end
-  end,
+  desc = "Disable spell checking for DAP windows",
 })
 
 cmd("VimResized", {
@@ -26,20 +18,23 @@ cmd("VimResized", {
     vim.cmd("tabdo wincmd =")
     vim.cmd("tabnext " .. current_tab)
   end,
+  desc = "Resize split windows when window resizes",
 })
 
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+cmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup,
   callback = function()
     if vim.o.buftype ~= "nofile" then
       vim.cmd("checktime")
     end
   end,
+  desc = "Reload file when external changes take place",
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+cmd("FileType", {
   group = augroup,
   callback = function()
-    vim.cmd("setlocal formatoptions-=c formatoptions-=o")
+    vim.bo.formatoptions = vim.bo.formatoptions:gsub("[co]", "")
   end,
+  desc = "No comment prefix when using o on comment",
 })

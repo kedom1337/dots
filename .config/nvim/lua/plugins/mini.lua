@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   -- stylua: ignore
   keys = {
-    { "<c-n>", function() MiniFiles.open() end, "Open file explorer" }
+    { "<leader>e", function() MiniFiles.open() end, "Open file explorer" }
   },
   config = function()
     require("mini.surround").setup()
