@@ -8,6 +8,11 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       rust = { "rustfmt" },
+      typescript = { { "prettierd", "prettier" } },
+      javascript = { { "prettierd", "prettier" } },
+      html = { { "prettierd", "prettier" } },
+      scss = { { "prettierd", "prettier" } },
+      css = { { "prettierd", "prettier" } },
       ["_"] = { "trim_whitespace" },
     },
   },
