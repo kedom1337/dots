@@ -13,7 +13,12 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "ahmedkhalf/project.nvim", name = "project_nvim", config = true, lazy = false },
+    {
+      "ahmedkhalf/project.nvim",
+      name = "project_nvim",
+      config = true,
+      lazy = false,
+    },
   },
   keys = {
     { "<leader>f", project_files, "Find files" },

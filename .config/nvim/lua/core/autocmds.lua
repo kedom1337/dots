@@ -11,6 +11,14 @@ cmd("FileType", {
   desc = "Disable spell checking for DAP windows",
 })
 
+cmd("TextYankPost", {
+  group = augroup,
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  desc = "Highlight on yank",
+})
+
 cmd("VimResized", {
   group = augroup,
   callback = function()
@@ -37,4 +45,41 @@ cmd("FileType", {
     vim.bo.formatoptions = vim.bo.formatoptions:gsub("[co]", "")
   end,
   desc = "No comment prefix when using o on comment",
+})
+
+cmd("FileType", {
+  group = augroup,
+  pattern = {
+    "PlenaryTestPopup",
+    "help",
+    "lspinfo",
+    "notify",
+    "qf",
+    "query",
+    "startuptime",
+    "checkhealth",
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
+  desc = "Close some filetypes with <q>",
+})
+
+cmd("FileType", {
+  group = augroup,
+  pattern = { "man" },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+  end,
+  desc = "Make it easier to close man-files when opened inline",
+})
+
+cmd({ "FileType" }, {
+  group = augroup,
+  pattern = { "json", "jsonc", "json5" },
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+  desc = "Fix conceallevel for json files",
 })

@@ -1,9 +1,9 @@
 return {
-  "williamboman/mason-lspconfig.nvim",
+  "neovim/nvim-lspconfig",
   dependencies = {
-    "neovim/nvim-lspconfig",
-    { "williamboman/mason.nvim", config = true },
     "b0o/SchemaStore.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    { "williamboman/mason.nvim", config = true },
   },
   event = "BufReadPre",
   keys = {
@@ -51,14 +51,41 @@ return {
 
     lsp.setup_handlers({
       function(server_name)
-        local ok, opts = pcall(require, "plugins.lsp." .. server_name)
-        if not ok then
-          opts = {}
-        end
-
-        require("lspconfig")[server_name].setup(opts)
+        require("lspconfig")[server_name].setup({})
       end,
       ["rust_analyzer"] = function() end,
+      ["jsonls"] = function()
+        require("lspconfig")["jsonls"].setup({
+          settings = {
+            json = {
+              schemas = require("schemastore").json.schemas(),
+              validate = {
+                enable = true,
+              },
+            },
+          },
+        })
+      end,
+      ["lua_ls"] = function()
+        require("lspconfig")["lua_ls"].setup({
+          settings = {
+            Lua = {
+              runtime = {
+                version = "LuaJIT",
+              },
+              workspace = {
+                checkThirdParty = false,
+                library = {
+                  vim.env.VIMRUNTIME,
+                },
+              },
+              diagnostics = {
+                globals = { "MiniFiles" },
+              },
+            },
+          },
+        })
+      end,
     })
   end,
 }

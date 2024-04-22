@@ -13,6 +13,7 @@ return {
       html = { { "prettierd", "prettier" } },
       scss = { { "prettierd", "prettier" } },
       css = { { "prettierd", "prettier" } },
+      json = { { "prettierd", "prettier" } },
       ["_"] = { "trim_whitespace" },
     },
   },

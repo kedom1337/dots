@@ -28,7 +28,6 @@ o.showmode = false
 o.wrap = false
 o.scrolloff = 10
 o.pumheight = 10
-o.cmdheight = 0
 o.smoothscroll = true
 
 o.list = true
