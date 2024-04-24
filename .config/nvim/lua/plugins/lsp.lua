@@ -49,9 +49,12 @@ return {
       ensure_installed = { "lua_ls" },
     })
 
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
     lsp.setup_handlers({
       function(server_name)
-        require("lspconfig")[server_name].setup({})
+        require("lspconfig")[server_name].setup({
+          capabilities = capabilities,
+        })
       end,
       ["rust_analyzer"] = function() end,
       ["jsonls"] = function()

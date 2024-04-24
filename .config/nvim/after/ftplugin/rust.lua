@@ -5,4 +5,4 @@ o.softtabstop = 4
 
 vim.keymap.set("n", "<leader>dd", function()
   vim.cmd.RustLsp("debuggables")
-end, { desc = "Write" })
+end, { desc = "Open rust debuggables" })

@@ -1,12 +1,13 @@
 return {
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
+  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
-    "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+    "saadparwaiz1/cmp_luasnip",
     "onsails/lspkind.nvim",
   },
   config = function()
@@ -15,7 +16,7 @@ return {
 
     cmp.setup({
       completion = {
-        completeopt = "menu,menuone,preview,noselect",
+        completeopt = "menu,menuone,noinsert",
       },
       window = {
         completion = cmp.config.window.bordered(),
@@ -70,6 +71,14 @@ return {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = "buffer" },
+      },
+    })
+
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+      matching = {
+        disallow_symbol_nonprefix_matching = false,
       },
     })
   end,

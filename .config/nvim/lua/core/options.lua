@@ -57,3 +57,4 @@ o.splitright = true
 
 o.spelllang = "en,de"
 o.swapfile = false
+o.undofile = true
