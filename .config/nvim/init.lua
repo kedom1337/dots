@@ -33,9 +33,7 @@ require("lazy").setup("plugins", {
   },
 })
 
-vim.keymap.set("n", "<leader>m", "<cmd> Lazy <cr>", { desc = "Open plugin manager" })
-
-require("core.theme")
+vim.keymap.set("n", "<leader>m", "<cmd>Lazy<cr>", { desc = "Open plugin manager" })
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
