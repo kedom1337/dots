@@ -17,6 +17,5 @@ if status is-interactive
     # Applications
     abbr -a y "yazi"
     abbr -a lgit "lazygit"
-    abbr -a ls "eza -al --color=always --group-directories-first"
-    abbr -a lt "eza -aT --color=always --group-directories-first"
+    alias ls "eza -al --color=always --group-directories-first"
 end
