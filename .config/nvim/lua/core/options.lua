@@ -19,7 +19,7 @@ o.number = true
 o.numberwidth = 2
 
 o.cursorline = true
-o.colorcolumn = "85"
+o.colorcolumn = "85,120"
 o.signcolumn = "yes"
 
 o.laststatus = 3
