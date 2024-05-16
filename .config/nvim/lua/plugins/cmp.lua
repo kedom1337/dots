@@ -18,10 +18,6 @@ return {
       completion = {
         completeopt = "menu,menuone,noinsert",
       },
-      window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -50,9 +46,9 @@ return {
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
-        { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
+        { name = "luasnip" },
       }),
       formatting = {
         format = require("lspkind").cmp_format({
@@ -76,7 +72,10 @@ return {
 
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+      sources = cmp.config.sources({
+        { name = "cmdline" },
+        { name = "path" },
+      }),
       matching = {
         disallow_symbol_nonprefix_matching = false,
       },

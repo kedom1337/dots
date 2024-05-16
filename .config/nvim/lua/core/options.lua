@@ -36,7 +36,7 @@ o.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 o.mouse = "a"
 o.clipboard = "unnamedplus"
 
-o.shortmess:append("WcIs")
+o.shortmess:append("WcIsS")
 o.matchpairs:append("<:>")
 o.splitkeep = "screen"
 o.inccommand = "split"

@@ -10,6 +10,9 @@ return {
       section_separators = "",
       globalstatus = true,
     },
+    sections = {
+      lualine_x = {'encoding', 'filetype', 'searchcount'},
+    },
     winbar = {
       lualine_c = {
         {
