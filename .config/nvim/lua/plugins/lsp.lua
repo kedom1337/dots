@@ -38,7 +38,6 @@ return {
           capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
       end,
-      ["rust_analyzer"] = function() end,
       ["jsonls"] = function()
         require("lspconfig")["jsonls"].setup({
           settings = {

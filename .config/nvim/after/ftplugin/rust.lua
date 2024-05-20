@@ -3,6 +3,4 @@ o.tabstop = 4
 o.shiftwidth = 4
 o.softtabstop = 4
 
-vim.keymap.set("n", "<leader>dd", function()
-  vim.cmd.RustLsp("debuggables")
-end, { desc = "Open rust debuggables" })
+vim.keymap.set("n", "<leader>dd", vim.cmd.RustLsp("debuggables"))
