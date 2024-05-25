@@ -1,10 +1,5 @@
 local map = vim.keymap.set
 
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
@@ -29,3 +24,19 @@ map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
+
+map({ "i", "s" }, "<tab>", function()
+  if vim.snippet.active({ direction = 1 }) then
+    return "<cmd>lua vim.snippet.jump(1)<cr>"
+  else
+    return "<tab>"
+  end
+end, { expr = true, desc = "Jump to next snippet placeholder" })
+
+map({ "i", "s" }, "<s-tab>", function()
+  if vim.snippet.active({ direction = -1 }) then
+    return "<cmd>lua vim.snippet.jump(-1)<cr>"
+  else
+    return "<s-tab>"
+  end
+end, { expr = true, desc = "Jump to previous snippet placeholder" })

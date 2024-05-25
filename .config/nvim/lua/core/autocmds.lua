@@ -65,21 +65,3 @@ cmd("FileType", {
   end,
   desc = "Close some filetypes with <q>",
 })
-
-cmd("FileType", {
-  group = augroup,
-  pattern = { "man" },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-  end,
-  desc = "Make it easier to close man-files when opened inline",
-})
-
-cmd({ "FileType" }, {
-  group = augroup,
-  pattern = { "json", "jsonc", "json5" },
-  callback = function()
-    vim.opt_local.conceallevel = 0
-  end,
-  desc = "Fix conceallevel for json files",
-})

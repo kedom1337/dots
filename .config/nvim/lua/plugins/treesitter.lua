@@ -1,8 +1,5 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = {
-    "windwp/nvim-ts-autotag",
-  },
   event = "BufReadPre",
   build = ":TSUpdate",
   init = function(plugin)
@@ -16,9 +13,6 @@ return {
         enable = true,
       },
       indent = {
-        enable = true,
-      },
-      autotag = {
         enable = true,
       },
     })

@@ -7,48 +7,26 @@ return {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
-    "saadparwaiz1/cmp_luasnip",
     "onsails/lspkind.nvim",
   },
   config = function()
     local cmp = require("cmp")
-    local luasnip = require("luasnip")
 
     cmp.setup({
       completion = {
         completeopt = "menu,menuone,noinsert",
-      },
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
       },
       mapping = cmp.mapping.preset.insert({
         ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if luasnip.locally_jumpable(1) then
-            luasnip.jump(1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "buffer" },
         { name = "path" },
-        { name = "luasnip" },
       }),
       formatting = {
         format = require("lspkind").cmp_format({
