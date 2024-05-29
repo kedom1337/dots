@@ -17,5 +17,6 @@ if status is-interactive
     # Applications
     abbr -a y "yazi"
     abbr -a lgit "lazygit"
+    abbr -a fetch "fastfetch"
     alias ls "eza -al --color=always --group-directories-first"
 end
