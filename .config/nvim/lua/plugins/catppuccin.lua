@@ -10,11 +10,5 @@ return {
         WinBar = { bg = colors.mantle },
       }
     end,
-    integrations = {
-      navic = {
-        enabled = true,
-        custom_bg = "#181825",
-      },
-    },
   },
 }

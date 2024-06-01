@@ -2,7 +2,6 @@ local o = vim.opt
 local g = vim.g
 
 g.mapleader = " "
-g.maplocalleader = " "
 
 local default_providers = {
   "node",

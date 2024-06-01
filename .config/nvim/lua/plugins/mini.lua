@@ -1,5 +1,8 @@
 return {
   "echasnovski/mini.nvim",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
   event = "VeryLazy",
   -- stylua: ignore
   keys = {
@@ -9,6 +12,10 @@ return {
     require("mini.surround").setup()
     require("mini.pairs").setup()
     require("mini.splitjoin").setup()
+    require("mini.move").setup()
+    require("mini.statusline").setup({
+      set_vim_settings = false,
+    })
     require("mini.files").setup({
       windows = {
         preview = true,

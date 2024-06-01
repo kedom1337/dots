@@ -6,6 +6,7 @@ return {
 
     lint.linters_by_ft = {
       markdown = { "markdownlint" },
+      tex = { "chktex" },
     }
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

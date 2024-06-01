@@ -14,6 +14,8 @@ return {
       scss = { "prettierd" },
       css = { "prettierd" },
       json = { "prettierd" },
+      tex = { "latexindent" },
+      bib = { "bibtex-tidy" },
       ["_"] = { "trim_whitespace" },
     },
   },
