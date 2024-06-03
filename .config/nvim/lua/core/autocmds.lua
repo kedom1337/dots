@@ -1,6 +1,6 @@
 local cmd = vim.api.nvim_create_autocmd
 
-local augroup = vim.api.nvim_create_augroup("CustomSettings", {})
+local augroup = vim.api.nvim_create_augroup("kedom/custom_cmds", {})
 
 cmd("FileType", {
   group = augroup,

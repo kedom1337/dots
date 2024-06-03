@@ -10,6 +10,7 @@ return {
         "-verbose",
         "-file-line-error",
         "-outdir=out",
+        "-pdf",
       },
     }
 
