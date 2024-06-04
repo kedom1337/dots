@@ -20,9 +20,7 @@ return {
   config = function()
     vim.diagnostic.config({
       severity_sort = true,
-      float = {
-        focusable = false,
-      },
+      float = { focusable = false },
     })
 
     local lsp = require("mason-lspconfig")
@@ -40,28 +38,24 @@ return {
       end,
       ["jsonls"] = function()
         require("lspconfig")["jsonls"].setup({
+          capabilities = require("cmp_nvim_lsp").default_capabilities(),
           settings = {
             json = {
               schemas = require("schemastore").json.schemas(),
-              validate = {
-                enable = true,
-              },
+              validate = { enable = true },
             },
           },
         })
       end,
       ["lua_ls"] = function()
         require("lspconfig")["lua_ls"].setup({
+          capabilities = require("cmp_nvim_lsp").default_capabilities(),
           settings = {
             Lua = {
-              runtime = {
-                version = "LuaJIT",
-              },
+              runtime = { version = "LuaJIT" },
               workspace = {
                 checkThirdParty = false,
-                library = {
-                  vim.env.VIMRUNTIME,
-                },
+                library = { vim.env.VIMRUNTIME },
               },
               diagnostics = {
                 globals = { "MiniFiles" },

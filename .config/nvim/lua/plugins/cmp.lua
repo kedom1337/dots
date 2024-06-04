@@ -13,9 +13,7 @@ return {
     local cmp = require("cmp")
 
     cmp.setup({
-      completion = {
-        completeopt = "menu,menuone,noinsert",
-      },
+      completion = { completeopt = "menu,menuone,noinsert" },
       mapping = cmp.mapping.preset.insert({
         ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
@@ -36,9 +34,7 @@ return {
           end,
         }),
       },
-      experimental = {
-        ghost_text = true,
-      },
+      experimental = { ghost_text = true },
     })
 
     cmp.setup.cmdline({ "/", "?" }, {
@@ -54,9 +50,7 @@ return {
         { name = "cmdline" },
         { name = "path" },
       }),
-      matching = {
-        disallow_symbol_nonprefix_matching = false,
-      },
+      matching = { disallow_symbol_nonprefix_matching = false },
     })
   end,
 }

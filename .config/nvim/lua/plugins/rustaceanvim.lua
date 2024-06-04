@@ -6,9 +6,7 @@ return {
       server = {
         default_settings = {
           ["rust-analyzer"] = {
-            imports = {
-              preferNoStd = true,
-            },
+            imports = { preferNoStd = true },
           },
         },
       },

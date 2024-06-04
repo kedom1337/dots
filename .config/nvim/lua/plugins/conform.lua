@@ -1,22 +1,24 @@
 return {
   "stevearc/conform.nvim",
+  dependencies = {
+    {
+      "frostplexx/mason-bridge.nvim",
+      config = true,
+      dependencies = {
+        "williamboman/mason.nvim",
+      },
+    },
+  },
   -- stylua: ignore
   keys = {
     { "<leader>l", function() require("conform").format() end, desc = "Format code" }
   },
-  opts = {
-    formatters_by_ft = {
-      lua = { "stylua" },
-      rust = { "rustfmt" },
-      typescript = { "prettierd" },
-      javascript = { "prettierd" },
-      html = { "prettierd" },
-      scss = { "prettierd" },
-      css = { "prettierd" },
-      json = { "prettierd" },
-      tex = { "latexindent" },
-      bib = { "bibtex-tidy" },
-      ["_"] = { "trim_whitespace" },
-    },
-  },
+  config = function()
+    local f = require("mason-bridge").get_formatters()
+    f["_"] = { "trim_whitespace" }
+
+    require("conform").setup({
+      formatters_by_ft = f,
+    })
+  end,
 }
