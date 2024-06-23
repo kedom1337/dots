@@ -1,6 +1,5 @@
 return {
   "mrcjkb/rustaceanvim",
-  lazy = false,
   init = function()
     vim.g.rustaceanvim = {
       server = {

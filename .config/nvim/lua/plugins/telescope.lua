@@ -7,8 +7,8 @@ return {
     {
       "ahmedkhalf/project.nvim",
       name = "project_nvim",
-      config = true,
       lazy = false,
+      config = true,
     },
   },
   keys = {

@@ -10,5 +10,10 @@ return {
         WinBar = { bg = colors.mantle },
       }
     end,
+    integrations = {
+      mini = {
+        enabled = true,
+      },
+    },
   },
 }
