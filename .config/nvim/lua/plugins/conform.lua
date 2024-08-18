@@ -16,6 +16,7 @@ return {
   config = function()
     local f = require("mason-bridge").get_formatters()
     f["_"] = { "trim_whitespace" }
+    f["rust"] = { "rustfmt" }
 
     require("conform").setup({
       formatters_by_ft = f,

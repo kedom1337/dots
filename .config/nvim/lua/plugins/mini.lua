@@ -22,7 +22,7 @@ return {
         blank = false,
         cursor_at = false,
       },
-      view = { n_steps_ahead = 2 },
+      view = { n_steps_ahead = 1 },
     })
     local hipatterns = require("mini.hipatterns")
     hipatterns.setup({
