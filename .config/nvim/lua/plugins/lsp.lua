@@ -23,17 +23,36 @@ return {
       float = { focusable = false },
     })
 
-    local lsp = require("mason-lspconfig")
+    local mason_lsp = require("mason-lspconfig")
 
-    lsp.setup({
+    mason_lsp.setup({
       automatic_installation = true,
       ensure_installed = { "lua_ls" },
     })
 
-    lsp.setup_handlers({
+    mason_lsp.setup_handlers({
       function(server_name)
         require("lspconfig")[server_name].setup({
           capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        })
+      end,
+      ["tsserver"] = function()
+        local mason_registry = require("mason-registry")
+        local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+          .. "/node_modules/@vue/language-server"
+
+        require("lspconfig")["ts_ls"].setup({
+          capabilities = require("cmp_nvim_lsp").default_capabilities(),
+          init_options = {
+            plugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = vue_language_server_path,
+                languages = { "javascript", "typescript", "vue" },
+              },
+            },
+          },
+          filetypes = { "javascript", "typescript", "vue" },
         })
       end,
       ["jsonls"] = function()
