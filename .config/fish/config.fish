@@ -2,8 +2,6 @@ if status is-interactive
     set -g fish_greeting
     set -gx GPG_TTY (tty)
 
-    fish_config theme choose "Catppuccin Mocha"
-
     fish_vi_key_bindings
 
     abbr -a !! --position anywhere --function last_history_item

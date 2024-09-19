@@ -1,14 +1,17 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  "nyoom-engineering/oxocarbon.nvim",
+  -- "catppuccin/nvim",
+  -- name = "catppuccin",
   init = function()
-    vim.cmd.colorscheme("catppuccin")
+    vim.opt.background = "dark"
+    -- vim.cmd.colorscheme("catppuccin")
+    vim.cmd.colorscheme("oxocarbon")
   end,
-  opts = {
-    custom_highlights = function(colors)
-      return {
-        WinBar = { bg = colors.mantle },
-      }
-    end,
-  },
+  -- opts = {
+  --   custom_highlights = function(colors)
+  --     return {
+  --       WinBar = { bg = colors.mantle },
+  --     }
+  --   end,
+  -- },
 }

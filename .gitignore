@@ -11,6 +11,7 @@
 !.config/firefox
 !.config/fish
 .config/fish/fish_variables
+.config/fish/functions
 !.config/yazi
 !.config/lazygit
 .config/lazygit/state.yml

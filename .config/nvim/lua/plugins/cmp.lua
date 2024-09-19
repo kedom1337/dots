@@ -19,9 +19,10 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
+        ["<C-Space>"] = cmp.mapping.complete(),
       }),
       sources = cmp.config.sources({
-        { name = "nvim_lsp", trigger_characters = { "-" } },
+        { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "buffer" },
         { name = "path" },
