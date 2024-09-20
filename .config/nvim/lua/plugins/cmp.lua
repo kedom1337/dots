@@ -15,11 +15,11 @@ return {
     cmp.setup({
       completion = { completeopt = "menu,menuone,noinsert" },
       mapping = cmp.mapping.preset.insert({
-        ["<CR>"] = cmp.mapping.confirm({
+        ["<cr>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<c-space>"] = cmp.mapping.complete(),
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },

@@ -6,7 +6,7 @@ return {
   event = "VeryLazy",
   -- stylua: ignore
   keys = {
-    { "<leader>e", function() MiniFiles.open() end, "Open file explorer" }
+    { "<leader>e", function() MiniFiles.open() end, "Open file explorer" },
   },
   config = function()
     require("mini.surround").setup()
@@ -17,12 +17,17 @@ return {
     require("mini.files").setup({
       windows = { preview = true },
     })
-    require("mini.jump2d").setup({
+    local jump2d = require("mini.jump2d")
+    jump2d.setup({
+      spotter = jump2d.builtin_opts.word_start.spotter,
+      labels = 'ghfjdkslabnvmceiruwoqpty',
       allowed_lines = {
-        blank = false,
         cursor_at = false,
       },
-      view = { n_steps_ahead = 1 },
+      view = {
+        n_steps_ahead = 2,
+      },
+      silent = true,
     })
     local hipatterns = require("mini.hipatterns")
     hipatterns.setup({

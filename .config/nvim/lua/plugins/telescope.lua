@@ -12,7 +12,8 @@ return {
     },
   },
   keys = {
-    { "<leader>f", "<cmd>Telescope find_files<cr>", "Find files" },
+    { "<leader>f", "<cmd>Telescope git_files<cr>", "Find git files" },
+    { "<leader>F", "<cmd>Telescope find_files<cr>", "Find files" },
     { "<leader>g", "<cmd>Telescope live_grep<cr>", "Live grep" },
     { "<leader>k", "<cmd>Telescope keymaps<cr>", "Show keys" },
     { "<leader>p", "<cmd>Telescope projects<cr>", "Find projects" },

@@ -76,7 +76,7 @@ return {
                 library = { vim.env.VIMRUNTIME },
               },
               diagnostics = {
-                globals = { "MiniFiles" },
+                globals = { "MiniFiles", "MiniJump2d" },
               },
             },
           },
