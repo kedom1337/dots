@@ -20,7 +20,7 @@ return {
     local jump2d = require("mini.jump2d")
     jump2d.setup({
       spotter = jump2d.builtin_opts.word_start.spotter,
-      labels = 'ghfjdkslabnvmceiruwoqpty',
+      labels = "ghfjdkslabnvmceiruwoqpty",
       allowed_lines = {
         cursor_at = false,
       },

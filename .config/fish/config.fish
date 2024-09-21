@@ -3,6 +3,8 @@ if status is-interactive
     set -gx GPG_TTY (tty)
 
     fish_vi_key_bindings
+    bind -M insert \t accept-autosuggestion
+    bind -M insert \cf complete
 
     abbr -a !! --position anywhere --function last_history_item
 
@@ -17,4 +19,6 @@ if status is-interactive
     abbr -a lgit "lazygit"
     abbr -a fetch "fastfetch"
     alias ls "eza -al --color=always --group-directories-first"
+
+    zoxide init fish | source
 end
