@@ -1,6 +1,7 @@
 local o = vim.opt
 local g = vim.g
 
+g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 g.mapleader = " "
 
 local default_providers = {

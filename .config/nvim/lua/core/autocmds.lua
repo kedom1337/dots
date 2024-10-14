@@ -65,3 +65,25 @@ cmd("FileType", {
   end,
   desc = "Close some filetypes with <q>",
 })
+
+vim.filetype.add({
+  pattern = {
+    [".*"] = {
+      function(path, buf)
+        return vim.bo[buf].filetype ~= "bigfile" and path and vim.fn.getfsize(path) > vim.g.bigfile_size and "bigfile"
+          or nil
+      end,
+    },
+  },
+})
+
+cmd({ "FileType" }, {
+  group = augroup("bigfile"),
+  pattern = "bigfile",
+  callback = function(ev)
+    vim.schedule(function()
+      vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
+    end)
+  end,
+  desc = "Only enable vim syntax for big files. LSP, treesitter etc. will be disabled",
+})
