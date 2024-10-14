@@ -66,17 +66,9 @@ return {
                 version = "LuaJIT",
               },
               diagnostics = {
-                globals = {
-                  "vim",
-                  "describe",
-                  "it",
-                  "assert",
-                  "stub",
-                  "MiniFiles",
-                  "MiniJump2d",
-                },
                 disable = {
                   "duplicate-set-field",
+                  "undefined-field",
                 },
               },
               telemetry = {
