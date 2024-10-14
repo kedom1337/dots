@@ -78,7 +78,7 @@ vim.filetype.add({
 })
 
 cmd({ "FileType" }, {
-  group = augroup("bigfile"),
+  group = augroup,
   pattern = "bigfile",
   callback = function(ev)
     vim.schedule(function()
