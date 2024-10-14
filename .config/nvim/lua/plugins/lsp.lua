@@ -31,17 +31,11 @@ return {
     })
 
     mason_lsp.setup_handlers({
-      function(server_name)
-        require("lspconfig")[server_name].setup({
-          capabilities = require("cmp_nvim_lsp").default_capabilities(),
-        })
-      end,
       ["ts_ls"] = function()
         local vue_mason_path = require("mason-registry").get_package("vue-language-server"):get_install_path()
         local vue_ls_path = vue_mason_path .. "/node_modules/@vue/language-server"
 
         require("lspconfig")["ts_ls"].setup({
-          capabilities = require("cmp_nvim_lsp").default_capabilities(),
           init_options = {
             plugins = {
               {
@@ -56,7 +50,6 @@ return {
       end,
       ["jsonls"] = function()
         require("lspconfig")["jsonls"].setup({
-          capabilities = require("cmp_nvim_lsp").default_capabilities(),
           settings = {
             json = {
               schemas = require("schemastore").json.schemas(),
@@ -67,16 +60,31 @@ return {
       end,
       ["lua_ls"] = function()
         require("lspconfig")["lua_ls"].setup({
-          capabilities = require("cmp_nvim_lsp").default_capabilities(),
           settings = {
             Lua = {
-              runtime = { version = "LuaJIT" },
+              runtime = {
+                version = "LuaJIT",
+              },
+              diagnostics = {
+                globals = {
+                  "vim",
+                  "describe",
+                  "it",
+                  "assert",
+                  "stub",
+                  "MiniFiles",
+                  "MiniJump2d",
+                },
+                disable = {
+                  "duplicate-set-field",
+                },
+              },
+              telemetry = {
+                enable = false,
+              },
               workspace = {
                 checkThirdParty = false,
                 library = { vim.env.VIMRUNTIME },
-              },
-              diagnostics = {
-                globals = { "MiniFiles", "MiniJump2d" },
               },
             },
           },

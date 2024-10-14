@@ -2,6 +2,7 @@ return {
   "echasnovski/mini.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    "nvim-treesitter/nvim-treesitter-textobjects",
   },
   event = "VeryLazy",
   -- stylua: ignore
@@ -17,10 +18,17 @@ return {
     require("mini.files").setup({
       windows = { preview = true },
     })
+    local ai = require("mini.ai")
+    ai.setup({
+      custom_textobjects = {
+        F = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+      },
+      silent = true,
+    })
     local jump2d = require("mini.jump2d")
     jump2d.setup({
       spotter = jump2d.builtin_opts.word_start.spotter,
-      labels = "ghfjdkslabnvmceiruwoqpty",
+      labels = "asdfjklghrnvbmceuowqptyi",
       allowed_lines = {
         cursor_at = false,
       },

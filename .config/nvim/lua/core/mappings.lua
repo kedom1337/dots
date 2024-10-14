@@ -17,19 +17,3 @@ map("n", "<c-h>", "<c-w>h", { desc = "Window left" })
 map("n", "<c-l>", "<c-w>l", { desc = "Window right" })
 map("n", "<c-j>", "<c-w>j", { desc = "Window down" })
 map("n", "<c-k>", "<c-w>k", { desc = "Window up" })
-
-map({ "i", "s" }, "<tab>", function()
-  if vim.snippet.active({ direction = 1 }) then
-    return "<cmd>lua vim.snippet.jump(1)<cr>"
-  else
-    return "<tab>"
-  end
-end, { expr = true, desc = "Jump to next snippet placeholder" })
-
-map({ "i", "s" }, "<s-tab>", function()
-  if vim.snippet.active({ direction = -1 }) then
-    return "<cmd>lua vim.snippet.jump(-1)<cr>"
-  else
-    return "<s-tab>"
-  end
-end, { expr = true, desc = "Jump to previous snippet placeholder" })
