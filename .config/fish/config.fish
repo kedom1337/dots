@@ -3,8 +3,7 @@ if status is-interactive
     set -gx GPG_TTY (tty)
 
     fish_vi_key_bindings
-    bind -M insert \t accept-autosuggestion
-    bind -M insert \cf complete
+    bind -M insert \cf accept-autosuggestion
 
     abbr -a !! --position anywhere --function last_history_item
 
