@@ -41,11 +41,19 @@ return {
               {
                 name = "@vue/typescript-plugin",
                 location = vue_ls_path,
-                languages = { "javascript", "typescript", "vue" },
+                languages = { "vue" },
               },
             },
           },
-          filetypes = { "javascript", "typescript", "vue" },
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+            "vue",
+          },
         })
       end,
       ["jsonls"] = function()
