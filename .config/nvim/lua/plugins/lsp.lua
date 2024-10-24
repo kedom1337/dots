@@ -31,6 +31,9 @@ return {
     })
 
     mason_lsp.setup_handlers({
+      function(server_name)
+        require("lspconfig")[server_name].setup()
+      end,
       ["ts_ls"] = function()
         local vue_mason_path = require("mason-registry").get_package("vue-language-server"):get_install_path()
         local vue_ls_path = vue_mason_path .. "/node_modules/@vue/language-server"
@@ -44,15 +47,6 @@ return {
                 languages = { "vue" },
               },
             },
-          },
-          filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-            "vue",
           },
         })
       end,
