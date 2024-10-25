@@ -23,32 +23,27 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("core.options")
+require("core.autocmds")
+require("core.mappings")
 
 require("lazy").setup("plugins", {
   change_detection = { notify = false },
+  rocks = { enabled = false },
   performance = {
     rtp = {
       disabled_plugins = {
         "gzip",
+        "netrwPlugin",
+        "rplugin",
+        "tarPlugin",
+        "zipPlugin",
         "matchit",
         "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
         "tohtml",
         "tutor",
-        "zipPlugin",
       },
     },
   },
 })
 
 vim.keymap.set("n", "<leader>m", "<cmd>Lazy<cr>", { desc = "Open plugin manager" })
-
-vim.api.nvim_create_autocmd("User", {
-  pattern = "VeryLazy",
-  callback = function()
-    vim.opt.spell = true
-    require("core.autocmds")
-    require("core.mappings")
-  end,
-})
