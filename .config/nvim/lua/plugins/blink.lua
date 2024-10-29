@@ -1,9 +1,9 @@
 return {
   "saghen/blink.cmp",
-  build = 'cargo build --release',
+  build = "cargo build --release",
   opts = {
     keymap = {
-      accept = "<cr>",
+      ["<cr>"] = { "select_and_accept", "fallback" },
     },
     highlight = {
       use_nvim_cmp_as_default = true,
