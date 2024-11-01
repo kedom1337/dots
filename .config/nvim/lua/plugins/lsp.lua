@@ -24,7 +24,6 @@ return {
     })
 
     local mason_lsp = require("mason-lspconfig")
-
     mason_lsp.setup({
       automatic_installation = true,
       ensure_installed = { "lua_ls" },
@@ -32,13 +31,16 @@ return {
 
     mason_lsp.setup_handlers({
       function(server_name)
-        require("lspconfig")[server_name].setup({})
+        require("lspconfig")[server_name].setup({
+          capabilities = require("blink.cmp").get_lsp_capabilities(),
+        })
       end,
       ["ts_ls"] = function()
         local vue_mason_path = require("mason-registry").get_package("vue-language-server"):get_install_path()
         local vue_ls_path = vue_mason_path .. "/node_modules/@vue/language-server"
 
         require("lspconfig")["ts_ls"].setup({
+          capabilities = require("blink.cmp").get_lsp_capabilities(),
           init_options = {
             plugins = {
               {
@@ -52,6 +54,7 @@ return {
       end,
       ["jsonls"] = function()
         require("lspconfig")["jsonls"].setup({
+          capabilities = require("blink.cmp").get_lsp_capabilities(),
           settings = {
             json = {
               schemas = require("schemastore").json.schemas(),
@@ -62,19 +65,11 @@ return {
       end,
       ["lua_ls"] = function()
         require("lspconfig")["lua_ls"].setup({
+          capabilities = require("blink.cmp").get_lsp_capabilities(),
           settings = {
             Lua = {
               runtime = {
                 version = "LuaJIT",
-              },
-              diagnostics = {
-                disable = {
-                  "duplicate-set-field",
-                  "undefined-field",
-                },
-              },
-              telemetry = {
-                enable = false,
               },
               workspace = {
                 checkThirdParty = false,
