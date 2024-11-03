@@ -3,7 +3,7 @@ return {
   dependencies = "rafamadriz/friendly-snippets",
   build = "cargo build --release",
   opts = {
-    keymap = "enter",
+    keymap = { preset = "enter" },
     highlight = {
       use_nvim_cmp_as_default = true,
     },
