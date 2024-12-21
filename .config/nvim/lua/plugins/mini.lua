@@ -7,6 +7,7 @@ return {
   event = "VeryLazy",
   -- stylua: ignore
   keys = {
+    ---@diagnostic disable-next-line: undefined-global
     { "<leader>e", function() MiniFiles.open() end, "Open file explorer" },
   },
   config = function()
