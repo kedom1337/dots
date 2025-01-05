@@ -11,18 +11,12 @@ return {
     { "gi", vim.lsp.buf.implementation, desc = "Lsp implementation" },
     { "gd", vim.lsp.buf.definition, desc = "Lsp definition" },
     { "gD", vim.lsp.buf.declaration, desc = "Lsp declaration" },
-    { "<leader>s", vim.lsp.buf.signature_help, desc = "Lsp signature help" },
     { "<leader>ra", vim.lsp.buf.rename, desc = "Lsp rename" },
     { "<leader>ca", vim.lsp.buf.code_action, desc = "Lsp code action" },
     { "<leader>i", vim.diagnostic.open_float, desc = "Opens current diagnostic" },
     { "<leader>M", "<cmd>Mason<cr>", desc = "Open package manager" },
   },
   config = function()
-    vim.diagnostic.config({
-      severity_sort = true,
-      float = { focusable = false },
-    })
-
     local mason_lsp = require("mason-lspconfig")
     mason_lsp.setup({
       automatic_installation = true,

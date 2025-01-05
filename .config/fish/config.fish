@@ -2,6 +2,8 @@ if status is-interactive
     set -g fish_greeting
     set -gx GPG_TTY (tty)
 
+    fish_add_path ~/.config/composer/vendor/bin ~/.local/bin ~/.cargo/bin
+
     fish_vi_key_bindings
     bind -M insert \cf accept-autosuggestion
 
