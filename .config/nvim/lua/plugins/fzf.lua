@@ -9,6 +9,5 @@ return {
     {"<leader>f", function() require("fzf-lua").files() end, "Find git files",},
     {"<leader>g", function() require("fzf-lua").live_grep() end, "Live grep",},
     {"<leader>k", function() require("fzf-lua").keymaps() end, "Show keys",},
-    -- { "<leader>p", "<cmd>Telescope projects<cr>", "Find projects" },
   },
 }

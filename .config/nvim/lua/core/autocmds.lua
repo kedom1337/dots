@@ -44,7 +44,7 @@ cmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufReadPost", {
+cmd("BufReadPost", {
   group = augroup("last_loc"),
   callback = function(event)
     local exclude = { "gitcommit" }
@@ -61,7 +61,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+cmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
     "PlenaryTestPopup",
@@ -95,7 +95,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+cmd("FileType", {
   group = augroup("man_unlisted"),
   pattern = { "man" },
   callback = function(event)
@@ -121,5 +121,32 @@ cmd({ "FileType" }, {
     vim.schedule(function()
       vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
     end)
+  end,
+})
+
+local map_split = function(buf_id, lhs, direction)
+  local rhs = function()
+    ---@diagnostic disable-next-line: undefined-global
+    local cur_target = MiniFiles.get_explorer_state().target_window
+    local new_target = vim.api.nvim_win_call(cur_target, function()
+      vim.cmd(direction .. " split")
+      return vim.api.nvim_get_current_win()
+    end)
+
+    ---@diagnostic disable-next-line: undefined-global
+    MiniFiles.set_target_window(new_target)
+  end
+
+  local desc = "Split " .. direction
+  vim.keymap.set("n", lhs, rhs, { buffer = buf_id, desc = desc })
+end
+
+cmd("User", {
+  group = augroup("mini_split"),
+  pattern = "MiniFilesBufferCreate",
+  callback = function(args)
+    local buf_id = args.data.buf_id
+    map_split(buf_id, "<C-s>", "belowright horizontal")
+    map_split(buf_id, "<C-v>", "belowright vertical")
   end,
 })

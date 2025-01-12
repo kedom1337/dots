@@ -17,6 +17,9 @@ return {
     require("mini.move").setup()
     require("mini.statusline").setup({ set_vim_settings = false })
     require("mini.files").setup({
+      options = {
+        use_as_default_explorer = false,
+      },
       windows = { preview = true },
     })
     local ai = require("mini.ai")
