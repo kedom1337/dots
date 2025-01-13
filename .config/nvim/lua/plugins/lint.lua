@@ -1,22 +1,18 @@
 return {
   "mfussenegger/nvim-lint",
-  dependencies = {
-    {
-      "frostplexx/mason-bridge.nvim",
-      config = true,
-      dependencies = {
-        "williamboman/mason.nvim",
-      },
-    },
-  },
   event = "BufReadPre",
-  config = function()
-    local lint = require("lint")
-    lint.linters_by_ft = require("mason-bridge").get_linters()
+  init = function()
+    vim.env.ESLINT_D_PPID = vim.fn.getpid()
+    require("lint").linters_by_ft = {
+      javascript = { "eslint_d" },
+      typescript = { "eslint_d" },
+      typescriptreact = { "eslint_d" },
+    }
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
       callback = function()
-        lint.try_lint()
+        local client = vim.lsp.get_clients({ bufnr = 0 })[1] or {}
+        require("lint").try_lint(nil, { cwd = client.root_dir })
       end,
     })
   end,

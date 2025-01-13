@@ -7,12 +7,6 @@ return {
   },
   event = "BufReadPre",
   keys = {
-    { "gr", vim.lsp.buf.references, desc = "Lsp references" },
-    { "gi", vim.lsp.buf.implementation, desc = "Lsp implementation" },
-    { "gd", vim.lsp.buf.definition, desc = "Lsp definition" },
-    { "gD", vim.lsp.buf.declaration, desc = "Lsp declaration" },
-    { "<leader>ra", vim.lsp.buf.rename, desc = "Lsp rename" },
-    { "<leader>ca", vim.lsp.buf.code_action, desc = "Lsp code action" },
     { "<leader>i", vim.diagnostic.open_float, desc = "Opens current diagnostic" },
     { "<leader>M", "<cmd>Mason<cr>", desc = "Open package manager" },
   },
@@ -29,20 +23,13 @@ return {
           capabilities = require("blink.cmp").get_lsp_capabilities(),
         })
       end,
-      ["ts_ls"] = function()
-        local vue_mason_path = require("mason-registry").get_package("vue-language-server"):get_install_path()
-        local vue_ls_path = vue_mason_path .. "/node_modules/@vue/language-server"
-
-        require("lspconfig")["ts_ls"].setup({
-          capabilities = require("blink.cmp").get_lsp_capabilities(),
-          init_options = {
-            plugins = {
-              {
-                name = "@vue/typescript-plugin",
-                location = vue_ls_path,
-                languages = { "vue" },
-              },
-            },
+      ["vtsls"] = function()
+        require("lspconfig").vtsls.setup({
+          typescript = {
+            tsserver = { maxTsServerMemory = 12288 },
+          },
+          experimental = {
+            completion = { entriesLimit = 3 },
           },
         })
       end,
