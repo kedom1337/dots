@@ -44,23 +44,6 @@ cmd("FileType", {
   end,
 })
 
-cmd("BufReadPost", {
-  group = augroup("last_loc"),
-  callback = function(event)
-    local exclude = { "gitcommit" }
-    local buf = event.buf
-    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
-      return
-    end
-    vim.b[buf].lazyvim_last_loc = true
-    local mark = vim.api.nvim_buf_get_mark(buf, '"')
-    local lcount = vim.api.nvim_buf_line_count(buf)
-    if mark[1] > 0 and mark[1] <= lcount then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
-    end
-  end,
-})
-
 cmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
@@ -103,37 +86,14 @@ cmd("FileType", {
   end,
 })
 
-vim.filetype.add({
-  pattern = {
-    [".*"] = {
-      function(path, buf)
-        return vim.bo[buf].filetype ~= "bigfile" and path and vim.fn.getfsize(path) > vim.g.bigfile_size and "bigfile"
-          or nil
-      end,
-    },
-  },
-})
-
-cmd({ "FileType" }, {
-  group = augroup("bigfile_syntax"),
-  pattern = "bigfile",
-  callback = function(ev)
-    vim.schedule(function()
-      vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
-    end)
-  end,
-})
-
 local map_split = function(buf_id, lhs, direction)
   local rhs = function()
-    ---@diagnostic disable-next-line: undefined-global
     local cur_target = MiniFiles.get_explorer_state().target_window
     local new_target = vim.api.nvim_win_call(cur_target, function()
       vim.cmd(direction .. " split")
       return vim.api.nvim_get_current_win()
     end)
 
-    ---@diagnostic disable-next-line: undefined-global
     MiniFiles.set_target_window(new_target)
   end
 

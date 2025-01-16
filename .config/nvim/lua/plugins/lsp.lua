@@ -11,17 +11,14 @@ return {
     { "<leader>M", "<cmd>Mason<cr>", desc = "Open package manager" },
   },
   config = function()
-    local mason_lsp = require("mason-lspconfig")
-    mason_lsp.setup({
+    require("mason-lspconfig").setup({
       automatic_installation = true,
       ensure_installed = { "lua_ls" },
     })
 
-    mason_lsp.setup_handlers({
+    require("mason-lspconfig").setup_handlers({
       function(server_name)
-        require("lspconfig")[server_name].setup({
-          capabilities = require("blink.cmp").get_lsp_capabilities(),
-        })
+        require("lspconfig")[server_name].setup({})
       end,
       ["vtsls"] = function()
         require("lspconfig").vtsls.setup({
@@ -35,7 +32,6 @@ return {
       end,
       ["jsonls"] = function()
         require("lspconfig")["jsonls"].setup({
-          capabilities = require("blink.cmp").get_lsp_capabilities(),
           settings = {
             json = {
               schemas = require("schemastore").json.schemas(),
@@ -46,7 +42,6 @@ return {
       end,
       ["lua_ls"] = function()
         require("lspconfig")["lua_ls"].setup({
-          capabilities = require("blink.cmp").get_lsp_capabilities(),
           settings = {
             Lua = {
               runtime = {

@@ -11,8 +11,11 @@ return {
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
       callback = function()
-        local client = vim.lsp.get_clients({ bufnr = 0 })[1] or {}
-        require("lint").try_lint(nil, { cwd = client.root_dir })
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
+        if #clients > 0 then
+          local client = clients[1]
+          require("lint").try_lint(nil, { cwd = client.root_dir })
+        end
       end,
     })
   end,
